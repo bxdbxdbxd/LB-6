@@ -36,7 +36,6 @@ int countNeighbors(int x, int y) {
     return count;
 }
 
-// Обновление поля
 void updateField() {
     vector<vector<int>> newField(HEIGHT, vector<int>(WIDTH, DEAD));
 
@@ -74,13 +73,6 @@ void printField() {
     cout << "+" << endl;
 }
 
-void addGlider(int x, int y) {
-    field[y][x] = ALIVE;
-    field[y][x + 1] = ALIVE;
-    field[y][x + 2] = ALIVE;
-    field[y + 1][x + 1] = ALIVE;
-    field[y + 2][x] = ALIVE;
-}
 
 // Основной цикл игры
 int main() {
@@ -90,7 +82,6 @@ int main() {
             field[i][j] = rand() % 2;
         }
     }
-    addGlider(WIDTH / 2, HEIGHT / 2);
 
     while (!_kbhit()) { // Продолжаем цикл, пока не нажата клавиша
         printField();
