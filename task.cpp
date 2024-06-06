@@ -7,6 +7,7 @@ void line_sub(long double *first, long double *second, int start, int end);
 
 int main() {
     int len_str = 5, len_col = 4, ind = 0;
+    double values_x[4];
     double matrix_val[4][5] = {{-0.77, -0.04, 0.21, -18, -1.24},
                                 {0.25, -1.23, 0.16, -0.09, 1.12},
                                 {-0.21, 0.16, 0.8, -0.13, 2.56},
@@ -21,7 +22,7 @@ int main() {
         cout << endl;
     }
 
-    cout << endl;;
+    cout << endl;
 
     while (ind < 4) {
         line_div(new_matrix[ind], ind, len_str, new_matrix[ind][ind]);
@@ -31,11 +32,28 @@ int main() {
         ind++;
     }
 
+
+    int num_x = 1;
+    for (int i = 0; i < len_col; i++) {
+        values_x[i] = new_matrix[i][len_str-1];
+    }
+
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 5; j++) {
             cout << new_matrix[i][j] << " ";
         }
         cout << endl;
+    }
+
+    for (int i = len_col - 1; i >= 0; --i) {
+        values_x[i] = new_matrix[i][len_str - 1];
+        for (size_t j = i + 1; j < len_str; ++j) {
+            values_x[i] -= new_matrix[i][j] * values_x[j];
+        }
+    }
+    cout << endl;
+    for (int i = 0; i < 4; i++) {
+        cout << "X" << i+1 << " = " << values_x[i] << endl;
     }
     return 0;
 }
